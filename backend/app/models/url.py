@@ -21,7 +21,7 @@ class URL(Base):
     )
 
     short_code: Mapped[str] = mapped_column(
-        String(10),
+        String(50),
         unique=True,
         index=True,
         nullable=False,

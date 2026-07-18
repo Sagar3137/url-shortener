@@ -7,6 +7,8 @@ from app.core.config import settings #pylint: disable=no-name-in-module import-e
 from alembic import context
 
 from app.db.base import Base #pylint: disable= import-error no-name-in-module
+from app.models.user import User #pylint: disable= import-error no-name-in-module
+from app.models.url import URL #pylint: disable= import-error no-name-in-module
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
