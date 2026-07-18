@@ -1,0 +1,64 @@
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.content {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+
+  color: var(--accent);
+
+  flex-shrink: 0;
+}
+
+.content h1 {
+  margin: 0;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  color: var(--text-primary);
+}
+
+.content p {
+  margin-top: .35rem;
+
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+
+  .content {
+    align-items: flex-start;
+  }
+
+  .icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .content h1 {
+    font-size: 1.65rem;
+  }
+
+}
+

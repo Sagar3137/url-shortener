@@ -1,0 +1,43 @@
+.empty {
+  padding: 5rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  border: 1px dashed var(--border);
+  border-radius: 18px;
+
+  background: var(--surface);
+}
+
+.icon {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--surface-2);
+
+  color: var(--accent);
+
+  margin-bottom: 1.5rem;
+}
+
+.empty h2 {
+  margin-bottom: .75rem;
+}
+
+.empty p {
+  max-width: 420px;
+
+  color: var(--text-secondary);
+
+  margin-bottom: 2rem;
+}

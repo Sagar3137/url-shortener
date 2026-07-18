@@ -1,9 +1,12 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
 from app.schemas.user import UserCreate, UserResponse, UserLogin, Token
 from app.services.user_service import UserService
+from app.core.limiter import limiter
+#from app.security.dependencies import get_current_user
+#from app.models.user import User
 
 
 router = APIRouter(
@@ -17,7 +20,9 @@ router = APIRouter(
     response_model=UserResponse,
     status_code=status.HTTP_201_CREATED,
 )
+@limiter.limit("5/minute")
 def register(
+    request: Request, # pylint: disable=unused-argument
     user: UserCreate,
     db: Session = Depends(get_db),
 ):
@@ -37,7 +42,9 @@ def register(
     "/login",
     response_model=Token,
 )
+@limiter.limit("5/minute")
 def login(
+    request: Request, # pylint: disable=unused-argument
     user: UserLogin,
     db: Session = Depends(get_db),
 ):

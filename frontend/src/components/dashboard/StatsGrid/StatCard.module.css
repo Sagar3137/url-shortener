@@ -1,0 +1,42 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title {
+  color: var(--text-secondary);
+  margin-bottom: .4rem;
+}
+
+.value {
+  font-size: 2rem;
+}
+
+.icon {
+  color: var(--accent);
+}
+
+.change {
+  margin-top: 1rem;
+  font-size: .9rem;
+  color: #16a34a;
+}

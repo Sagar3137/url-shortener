@@ -1,0 +1,100 @@
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 4rem 1.5rem 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem;
+}
+
+.brand p {
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 320px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.logo svg {
+  color: var(--accent);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+.column h4 {
+  margin-bottom: .5rem;
+}
+
+.column a {
+  color: var(--text-secondary);
+  transition: color .2s ease;
+}
+
+.column a:hover {
+  color: var(--accent);
+}
+
+.comingSoon {
+  color: var(--text-secondary);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.comingSoon small {
+  color: var(--accent);
+}
+
+.bottom {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+
+  padding-top: 2rem;
+
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: var(--text-secondary);
+}
+
+.bottom p {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+@media (max-width: 900px) {
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+}

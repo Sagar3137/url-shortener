@@ -3,7 +3,7 @@ from pydantic import BaseModel, HttpUrl, Field
 
 
 class PaginatedURLResponse(BaseModel):
-    items: list[URLResponse]
+    items: list[URLListItem]
     page: int
     page_size: int
     total: int
@@ -40,4 +40,14 @@ class URLDetails(URLBase):
     
     
 class URLUpdate(BaseModel):
-    long_url: HttpUrl
+    long_url: HttpUrl | None = None
+
+    alias: str | None = Field(
+        default=None,
+        min_length=2,
+        max_length=30,
+        pattern=r"^[A-Za-z0-9_-]+$",
+    )
+    
+class URLListItem(URLBase):
+    clicks: int

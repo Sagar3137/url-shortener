@@ -33,3 +33,20 @@ class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
     
+    
+class UserUpdate(BaseModel):
+    username: str | None = Field(
+        default=None,
+        min_length=3,
+        max_length=30,
+    )
+
+    email: EmailStr | None = None
+    
+class PasswordUpdate(BaseModel):
+    current_password: str
+
+    new_password: str = Field(
+        min_length=8,
+    )
+    

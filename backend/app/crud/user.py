@@ -92,3 +92,22 @@ class UserRepository:
         )
 
         return db.scalar(stmt)
+    
+    @staticmethod
+    def update(
+        db: Session,
+        user: User,
+    ) -> User:
+        db.commit()
+        db.refresh(user)
+
+        return user
+
+
+    @staticmethod
+    def delete(
+        db: Session,
+        user: User,
+    ) -> None:
+        db.delete(user)
+        db.commit()

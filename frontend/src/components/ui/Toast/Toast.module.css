@@ -1,0 +1,75 @@
+.toast {
+  position: fixed;
+
+  bottom: 2rem;
+  right: 2rem;
+
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+
+  padding: 1rem 1.25rem;
+
+  border-radius: 14px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  box-shadow: var(--shadow-lg);
+
+  z-index: 1000;
+
+  animation: slideUp .25s ease;
+}
+
+.success {
+  color: #16a34a;
+}
+
+.error {
+  color: #dc2626;
+}
+
+.info {
+  color: var(--accent);
+}
+
+@keyframes slideUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.toast {
+  animation:
+    slideIn 0.25s ease,
+    fadeOut 0.3s ease 2.7s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}

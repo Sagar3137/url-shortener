@@ -1,0 +1,12 @@
+.list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.loading {
+  padding: 3rem;
+
+  text-align: center;
+
+  color: var(--text-secondary);
+}

@@ -1,0 +1,165 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.loading {
+  padding: 3rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.empty {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+/* ---------- Card ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  padding: 1.5rem;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---------- Layout ---------- */
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.summary {
+  min-width: 140px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+/* ---------- Alias ---------- */
+
+.alias {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .5rem;
+}
+
+.alias h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ---------- URLs ---------- */
+
+.shortUrl {
+  display: inline-block;
+
+  margin-bottom: .75rem;
+
+  color: var(--accent);
+  text-decoration: none;
+  font-size: .95rem;
+
+  word-break: break-word;
+}
+
+.shortUrl:hover {
+  text-decoration: underline;
+}
+
+.longUrl {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+/* ---------- Summary ---------- */
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+
+  color: var(--text-primary);
+}
+
+.metricValue {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.metricLabel {
+  color: var(--text-secondary);
+  font-size: .9rem;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+
+  color: var(--text-secondary);
+  font-size: .9rem;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions {
+  display: flex;
+  gap: .6rem;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+
+  .top {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .summary {
+    align-items: flex-start;
+  }
+
+  .footer {
+    justify-content: flex-start;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+  }
+}

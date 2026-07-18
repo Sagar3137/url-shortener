@@ -1,0 +1,35 @@
+.cta {
+  padding: 3rem 1.5rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 4rem 2rem;
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(220, 38, 38, 0.08),
+      transparent 70%
+    ),
+    var(--surface);
+
+  text-align: center;
+
+  box-shadow: var(--shadow-md);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}

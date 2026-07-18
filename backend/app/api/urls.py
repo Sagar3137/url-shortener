@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException, Response, status, Query
+from fastapi import APIRouter, Depends, HTTPException, Response, status, Query, Request
 from sqlalchemy.orm import Session
+from app.core.limiter import limiter
 
 from app.db.session import get_db
 from app.schemas.url import (
@@ -33,7 +34,9 @@ router = APIRouter(prefix="/urls", tags=["URLs"])
     response_model=URLResponse,
     status_code=status.HTTP_201_CREATED,
 )
-def create_short_url(
+@limiter.limit("30/minute")
+def create_short_url( 
+    request: Request,# pylint: disable=unused-argument
     url: URLCreate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
@@ -100,7 +103,9 @@ def get_url_details(
     "/{short_code}",
     status_code=status.HTTP_204_NO_CONTENT,
 )
+@limiter.limit("20/minute")
 def delete_url(
+    request: Request, # pylint: disable=unused-argument
     short_code: str,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
@@ -127,7 +132,9 @@ def delete_url(
     "/{short_code}",
     response_model=URLResponse,
 )
+@limiter.limit("20/minute")
 def update_url(
+    request: Request, # pylint: disable=unused-argument
     short_code: str,
     url: URLUpdate,
     db: Session = Depends(get_db),
@@ -136,6 +143,7 @@ def update_url(
     return URLService.update_url(
         db,
         short_code,
-        str(url.long_url),
+        str(url.long_url) if url.long_url else None,
+        url.alias,
         current_user,
     )

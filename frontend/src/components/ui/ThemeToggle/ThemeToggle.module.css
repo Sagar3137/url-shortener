@@ -1,0 +1,21 @@
+.toggle {
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid var(--border);
+  border-radius: 50%;
+
+  background: var(--surface);
+  color: var(--text-primary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all .2s ease;
+}
+
+.toggle:hover {
+  background: var(--surface-2);
+  border-color: var(--accent);
+}

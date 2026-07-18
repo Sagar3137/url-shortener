@@ -1,0 +1,23 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.qrContainer {
+  background: white;
+  padding: 1rem;
+  border-radius: 16px;
+}
+
+.url {
+  word-break: break-all;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}

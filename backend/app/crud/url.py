@@ -74,13 +74,19 @@ class URLRepository:
         return url
     
     @staticmethod
-    def update_long_url(
+    def update_url(
         db: Session,
         url: URL,
-        long_url: str,
+        *,
+        long_url: str | None = None,
+        short_code: str | None = None,
     ) -> URL:
 
-        url.long_url = long_url
+        if long_url is not None:
+            url.long_url = long_url
+
+        if short_code is not None:
+            url.short_code = short_code
 
         db.commit()
         db.refresh(url)
@@ -139,3 +145,59 @@ class URLRepository:
             list(db.scalars(query).all()),
             total,
         )
+        
+    @staticmethod
+    def get_total_links(
+        db: Session,
+        user_id: int,
+    ) -> int:
+        stmt = (
+            select(func.count()) # pylint: disable=not-callable
+            .select_from(URL)
+            .where(URL.user_id == user_id)
+        )
+
+        return db.scalar(stmt) or 0
+
+    @staticmethod
+    def get_total_clicks(
+        db: Session,
+        user_id: int,
+    ) -> int:
+        stmt = (
+            select(func.sum(URL.clicks)) # pylint: disable=not-callable
+            .where(URL.user_id == user_id)
+        )
+
+        return db.scalar(stmt) or 0
+    
+    @staticmethod
+    def get_top_link(
+        db: Session,
+        user_id: int,
+    ) -> URL | None:
+
+        stmt = (
+            select(URL)
+            .where(URL.user_id == user_id)
+            .order_by(URL.clicks.desc())
+            .limit(1)
+        )
+
+        return db.scalar(stmt)
+    
+    @staticmethod
+    def get_recent_links(
+        db: Session,
+        user_id: int,
+        limit: int = 5,
+    ) -> list[URL]:
+
+        stmt = (
+            select(URL)
+            .where(URL.user_id == user_id)
+            .order_by(URL.created_at.desc())
+            .limit(limit)
+        )
+
+        return list(db.scalars(stmt).all())

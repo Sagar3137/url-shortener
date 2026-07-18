@@ -1,0 +1,101 @@
+.hero {
+  padding: 5rem 1.5rem;
+  background: var(--bg);
+}
+
+.heroContent {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroBadge {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.45rem 0.9rem;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: var(--surface);
+
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  margin-bottom: 1.5rem;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 4vw, 5rem);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--text-primary);
+
+  margin-bottom: 1.5rem;
+}
+
+.heroDescription {
+  max-width: 560px;
+
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+
+  margin-bottom: 2.5rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================
+   Live Preview Card
+========================================================== */
+
+.heroRight {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .heroLeft {
+    text-align: center;
+    align-items: center;
+  }
+
+  .heroDescription {
+    max-width: 100%;
+  }
+
+  .heroActions {
+    justify-content: center;
+  }
+
+  .heroRight {
+    width: 100%;
+  }
+
+}

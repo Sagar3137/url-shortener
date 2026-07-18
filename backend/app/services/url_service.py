@@ -9,7 +9,7 @@ from app.crud.url import URLRepository
 from app.models.url import URL
 from app.models.user import User
 from app.core.config import settings
-from app.schemas.url import URLResponse, URLDetails, PaginatedURLResponse
+from app.schemas.url import URLResponse, URLDetails, PaginatedURLResponse, URLListItem
 from app.core.exceptions import ForbiddenError, ResourceNotFoundError, ConflictError
 from app.core.logger import logger
 
@@ -181,14 +181,24 @@ class URLService:
             last_accessed=url.last_accessed,
         )
         
-            
+        
+    @staticmethod
+    def _to_list_item(url: URL) -> URLListItem:
+        base = URLService._to_response(url)
+
+        return URLListItem(
+            **base.model_dump(),
+            clicks=url.clicks,
+        )
+                
     @staticmethod
     def update_url(
         db: Session,
         short_code: str,
-        long_url: str,
+        long_url: str | None,
+        alias: str | None,
         current_user: User,
-    ) -> URLResponse:
+    )-> URLResponse:
         url = URLRepository.get_by_short_code(
             db,
             short_code,
@@ -206,10 +216,24 @@ class URLService:
             )
             raise ForbiddenError("You are not authorized.")
 
-        updated = URLRepository.update_long_url(
+        new_alias = None
+
+        if alias is not None:
+            alias = alias.strip().lower()
+
+            if alias != url.short_code:
+                if URLRepository.short_code_exists(db, alias):
+                    raise ConflictError(
+                        "Custom alias already exists."
+                    )
+                    
+            new_alias = alias
+            
+        updated = URLRepository.update_url(
             db,
             url,
-            long_url,
+            long_url=long_url,
+            short_code=new_alias,
         )
         
         logger.info(
@@ -249,7 +273,7 @@ class URLService:
 
         return PaginatedURLResponse(
             items=[
-                URLService._to_response(url)
+                URLService._to_list_item(url)
                 for url in urls
             ],
             page=page,
