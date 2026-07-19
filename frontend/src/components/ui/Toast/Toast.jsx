@@ -20,7 +20,8 @@ export default function Toast({
 
   return (
     <div className={`${styles.toast} ${styles[type]}`}>
-      <Icon size={20} />
+      <Icon size={20}
+      style={{ flexShrink: 0 }} />
 
       <span>{message}</span>
     </div>

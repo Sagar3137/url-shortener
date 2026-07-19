@@ -12,7 +12,11 @@ export function ToastProvider({ children }) {
   const timeoutRef = useRef(null);
 
   const showToast = useCallback((message, type = "success") => {
-    setToast({ message, type });
+    setToast({
+      id: Date.now(),
+      message,
+      type,
+    });
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -39,17 +43,9 @@ export function ToastProvider({ children }) {
 
       {toast && (
         <Toast
-          position="top-center"
-          gutter={12}
-          reverseOrder={false}
-          toastOptions={{
-            duration: 3000,
-            style: {
-              background: "var(--surface)",
-              color: "var(--text-primary)",
-              border: "1px solid var(--border)",
-            },
-          }}
+          key={toast.id}
+          message={toast.message}
+          type={toast.type}
         />
       )}
     </ToastContext.Provider>
