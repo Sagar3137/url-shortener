@@ -65,7 +65,6 @@ export default function Dashboard() {
     <main className={styles.dashboard}>
       <DashboardHeader />
 
-      
       <StatsGrid
         totalLinks={analytics?.total_links ?? 0}
         totalClicks={analytics?.total_clicks ?? 0}
@@ -92,6 +91,10 @@ export default function Dashboard() {
               "noopener,noreferrer"
             )
           }
+          onQr={(url) => {
+            setSelectedQrUrl(url);
+            setQrOpen(true);
+          }}
         />
 
         <RecentLinksCard

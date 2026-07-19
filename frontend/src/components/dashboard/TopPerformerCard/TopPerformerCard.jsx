@@ -79,7 +79,7 @@ export default function TopPerformerCard({
 
             <Button
               variant="secondary"
-              onClick={onQr}
+              onClick={() => onQr(link)}
             >
               <QrCode size={16} />
               QR
